@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_movie")
@@ -18,13 +19,12 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    public List<Score> getScores() {
+    public Set<Score> getScores() {
         return scores;
     }
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "movie_id")
-    private List<Score> scores;
+    @OneToMany(mappedBy = "id.movie")
+    private Set<Score> scores;
 
     private String title;
     private Double score;

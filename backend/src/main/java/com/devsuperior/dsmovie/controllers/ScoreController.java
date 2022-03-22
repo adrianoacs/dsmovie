@@ -1,5 +1,6 @@
 package com.devsuperior.dsmovie.controllers;
 
+import com.devsuperior.dsmovie.dto.MovieDTO;
 import com.devsuperior.dsmovie.dto.ScoreDTO;
 import com.devsuperior.dsmovie.services.ScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +18,12 @@ public class ScoreController {
     private ScoreService scoreService;
 
     @PutMapping("scoreMovie")
-    public void saveScore(@RequestBody ScoreDTO scoreDTO){
-        scoreService.saveScore(scoreDTO);
+    public MovieDTO saveScore(@RequestBody ScoreDTO scoreDTO) {
+        return scoreService.saveScore(scoreDTO);
     }
 
     @GetMapping
-    public String getScore(){
+    public String getScore() {
         return "operação get não permitida";
     }
 }

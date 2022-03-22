@@ -1,10 +1,14 @@
 package com.devsuperior.dsmovie.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_movie")
@@ -13,6 +17,14 @@ public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    public Set<Score> getScores() {
+        return scores;
+    }
+
+    @OneToMany(mappedBy = "id.movie")
+    private Set<Score> scores;
+
     private String title;
     private Double score;
     private Integer count;
